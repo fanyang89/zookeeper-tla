@@ -1,0 +1,41 @@
+version: '3'
+
+# Task runs from the checkout root, including when its path contains spaces.
+dir: '{{.ROOT_DIR}}'
+
+tasks:
+  default:
+    desc: List explicit tooling commands (does not run a model)
+    cmds: ['task --list']
+
+  setup:
+    desc: Hydrate pinned LFS files, initialize missing spec submodule, unpack locally
+    cmds: ['python3 tools/toolchain.py setup']
+
+  doctor:
+    desc: Offline prerequisites, checksums, submodule state and tool versions
+    cmds: ['python3 tools/toolchain.py doctor']
+
+  tlc:
+    desc: Run pinned TLC with arguments after -- (explicit model runs may be unbounded)
+    cmds: ['python3 tools/toolchain.py tlc {{.CLI_ARGS}}']
+
+  sany:
+    desc: Run pinned SANY with arguments after --
+    cmds: ['python3 tools/toolchain.py sany {{.CLI_ARGS}}']
+
+  apalache:
+    desc: Run pinned Apalache with arguments after --
+    cmds: ['python3 tools/toolchain.py apalache {{.CLI_ARGS}}']
+
+  smoke:
+    desc: Offline tiny SANY, TLC and Apalache checks with wall-clock/heap limits
+    cmds: ['python3 tools/toolchain.py smoke']
+
+  verify:
+    desc: All 13 bounded connecting-quorum cases (default depth 8, 60 seconds per case)
+    cmds: ['python3 tools/toolchain.py verify {{.CLI_ARGS}}']
+
+  test:
+    desc: Offline runner and tooling regression tests (no model checking)
+    cmds: ['python3 tools/toolchain.py test']

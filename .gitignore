@@ -1,0 +1,5 @@
+/.tools/
+/.tool-results/
+**/__pycache__/
+/_apalache-out/
+/states/
