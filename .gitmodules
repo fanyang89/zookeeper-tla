@@ -1,0 +1,6 @@
+[submodule "zookeeper-tla-spec"]
+	path = zookeeper-tla-spec
+	url = https://github.com/fanyang89/zookeeper-tla-spec.git
+[submodule "Remix"]
+	path = Remix
+	url = https://github.com/fanyang89/Remix.git
